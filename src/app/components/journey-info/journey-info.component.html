@@ -1,0 +1,26 @@
+<table class="table table-borderless mb-1">
+  <tr>
+    <th class="table-info p-1 text-info"><fa-icon [icon]="faPassport"></fa-icon></th>
+    <td colspan="3" class="p-1 font-weight-bold">{{ journey.flight }}</td>
+  </tr>
+  <tr>
+    <th class="table-info p-1 text-info"><fa-icon [icon]="faPlaneDeparture"></fa-icon></th>
+    <td colspan="3" class="p-1">{{ airportName('departure') }}</td>
+  </tr>
+  <tr>
+    <th class="table-info p-1 text-info"><fa-icon [icon]="faCalendar"></fa-icon></th>
+    <td class="p-1">{{ departureDate }}</td>
+    <th class="table-info p-1 text-info"><fa-icon [icon]="faClock"></fa-icon></th>
+    <td class="p-1">{{ departureHour }}</td>
+  </tr>
+  <tr>
+    <th class="table-info p-1 text-info"><fa-icon [icon]="faPlaneArrival"></fa-icon></th>
+    <td colspan="3" class="p-1">{{ airportName('arrival') }}</td>
+  </tr>
+  <tr>
+    <th class="table-info p-1 text-info"><fa-icon [icon]="faCalendar"></fa-icon></th>
+    <td class="p-1">{{ arrivalDate }}</td>    
+    <th class="table-info p-1 text-info"><fa-icon [icon]="faClock"></fa-icon></th>
+    <td class="p-1">{{ arrivalHour }}</td>
+  </tr>
+</table>

@@ -1,31 +1,58 @@
-import { TestBed, async } from '@angular/core/testing';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { TitleBarComponent } from './components/title-bar/title-bar.component';
+import { BookingInfoComponent } from './components/booking-info/booking-info.component';
+import { PassengersListComponent } from './components/passengers-list/passengers-list.component';
+import { MealChooserComponent } from './components/meal-chooser/meal-chooser.component';
+import { ModalContainerComponent } from './components/modal-container/modal-container.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { JourneyInfoComponent } from './components/journey-info/journey-info.component';
+import { MealListComponent } from './components/meal-list/meal-list.component';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
+
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        TitleBarComponent,
+        BookingInfoComponent,
+        PassengersListComponent,
+        MealChooserComponent,
+        ModalContainerComponent, 
+        LoadingSpinnerComponent,
+        JourneyInfoComponent,
+        MealListComponent
       ],
+      imports: [
+        FontAwesomeModule,
+        FormsModule,
+        HttpClientModule,
+        HttpClientJsonpModule,
+      ]
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  beforeEach(() => {
 
-  it(`should have as title 'bid4meal'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('bid4meal');
-  });
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to bid4meal!');
+
   });
+
+  it('should create the app', () => {
+    
+    expect(component).toBeTruthy();
+
+  });
+  
 });

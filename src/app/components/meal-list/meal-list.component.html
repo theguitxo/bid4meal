@@ -1,0 +1,54 @@
+<div class="meals-list">
+
+  <div class="row" *ngIf="errorPrice">
+    <div class="col-12">
+      <div 
+        class="alert alert-warning d-flex align-items-center" 
+        role="alert">
+        <img src="./assets/images/warning.png" class="mr-2">Please, select a price for the meal
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngFor="let meal of meals; let idx = index; let last = last">
+    <div class="row"
+      [ngClass]="{ 'meal-selected' : selected === idx }">    
+      <div class="col-12 py-2 d-flex justify-content-start align-items-center">
+        <img src="./assets/images/{{meal.mealId.toLowerCase()}}.png">
+        <span class="ml-3">{{ meal.desc }}</span>
+      </div>    
+    </div>
+    <div class="row pb-2"
+      [ngClass]="{'border-bottom': !last,
+                  'meal-selected' : selected === idx }">
+      <div class="col-12 col-sm-6  d-flex align-items-center justify-content-around">
+        <span class="px-2">Price:</span>
+        <input type="range" 
+          name="price{{idx}}" 
+          (change)="checkPrice(idx)"
+          [(ngModel)]="prices[idx]" 
+          min="{{meal.priceRange.min}}"
+          max="{{meal.priceRange.max}}"
+          step="{{meal.priceRange.jump}}">
+        <span class="px-2">{{ prices[idx] }}</span>
+      </div>
+      <div class="col-12 col-sm-6">
+        <button 
+          type="button"
+          class="btn btn-primary btn-block btn-sm"
+          (click)="selectMeal(idx)">
+          Select
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="row pt-1">
+    <div class="col-6">
+      <button type="button" class="btn btn-success" [disabled]="selected === null || errorPrice" (click)="acceptSelection()">Accept</button>
+    </div>
+    <div class="col-6 text-right">
+      <button type="button" class="btn btn-danger" (click)="cancelSelection()">Cancel</button>
+    </div>
+  </div>
+</div>

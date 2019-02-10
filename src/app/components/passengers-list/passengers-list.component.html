@@ -1,0 +1,14 @@
+<div class="card">
+  <h5 class="card-header">
+    <img src="./assets/images/baggage.png" class="mr-2">
+    Passengers
+  </h5>
+  <div class="card-body p-1">
+    <ul class="list-group">
+      <li class="list-group-item p-1" *ngFor="let passenger of passengers; let idx = index">
+        <img src="./assets/images/{{passenger.gender.toLowerCase()}}{{passenger.type.toLowerCase()}}.png">
+        {{ passenger.prefix}} {{passenger.firstName}} {{passenger.lastName}}
+      </li>
+    </ul>
+  </div>
+</div>

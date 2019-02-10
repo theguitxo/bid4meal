@@ -1,0 +1,71 @@
+<div class="card">
+  <h5 class="card-header">
+    <img src="./assets/images/trolley.png" class="mr-2">
+    Meal chooser
+  </h5>
+  <div class="card-body p-1">    
+    
+    <div class="row">
+      
+      <div class="col-xs-12 col-md-6" *ngFor="let journey of journeys; let idx = index">
+
+        <app-journey-info 
+          [journey]="journey" 
+          [locale]="locale">
+        </app-journey-info>
+
+        <div
+          [ngClass]="{'mb-4': mealSelection[idx].meal === null}">
+          <button
+            type="button"
+            class="btn btn-primary btn-block"
+            (click)="openMealChooser(idx)">
+            Choose meal
+          </button>
+        </div>
+
+        <div 
+          class="mb-4"
+          *ngIf="mealSelection[idx].meal !== null">
+          <div>Your choose:</div>
+          <div class="d-flex justify-content-start align-items-center">
+            <img src="./assets/images/{{mealSelection[idx].meal.mealId.toLowerCase()}}.png">
+            <span class="ml-1">{{ mealSelection[idx].meal.desc }}</span>            
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row" *ngIf="showSendButton()">
+      <div class="col-12">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="sendChoose()">
+          <fa-icon [icon]="faAngleDoubleRight" class="mr-2"></fa-icon>Send your selection
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-modal-container *ngIf="showMealChooser">
+  <app-meal-list
+    [meals]="meals"
+    [dataSelected]="dataSelected"
+    (accept)="acceptSelection($event)"
+    (cancel)="cancelSelection()">
+  </app-meal-list>
+</app-modal-container>
+
+<app-modal-container *ngIf="showFinalChoose">
+  <div class="final-choose p-1 m-2 border rounded bg-light">
+    <div class="text-right">
+      <fa-icon [icon]="faTimesCircle" (click)="closeFinalChoose()"></fa-icon>
+    </div>
+    <pre>{{ finalChoose | json }}</pre>
+  </div>
+</app-modal-container>
