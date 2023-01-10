@@ -14,4 +14,4 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 You can see a functional demo of this app in the next url:
 
-[http://bid4meal.guitxo.com/](http://bid4meal.guitxo.com)
+[https://theguitxo.github.io/bid4meal/](https://theguitxo.github.io/bid4meal/)
